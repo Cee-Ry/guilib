@@ -1,0 +1,3 @@
+g++ -std=c++26 src/main.cpp -o main -Iinclude -Ivendor/include -Lvendor/lib -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
+
+./main

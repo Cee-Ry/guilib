@@ -1,0 +1,7 @@
+# Ignored Files
+a.out
+main
+
+# Ignored Directories
+build/
+

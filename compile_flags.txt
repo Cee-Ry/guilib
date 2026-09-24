@@ -1,0 +1,3 @@
+-Iinclude
+-Ivendor/include
+-std=c++26
