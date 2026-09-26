@@ -24,10 +24,6 @@ namespace gui {
       CloseWindow();
     }
 
-    bool isOpen() const {
-      return !WindowShouldClose();
-    }
-    
     class Renderer {
     private:
     public:
@@ -42,7 +38,19 @@ namespace gui {
 
     [[nodiscard]] Renderer startRender(Color background = RAYWHITE) const {
       return background;
-    }
+    } // making Renderer's object into Window's member
+
+    // Methods
+    void ToggleFullscreen() { ToggleFullscreen(); }
+    void ToggleBorderlessWindowed() { ToggleBorderlessWindowed(); }
+    void MaximizeWindow() { MaximizeWindow(); }
+    void MinimizeWindow() { MinimizeWindow(); }
+    void RestoreWindow() { RestoreWindow(); }
+    void SetWindowIcon(Image image) { SetWindowIcon(image); }
+
+
+    bool isOpen() const { return !WindowShouldClose(); }
+    
   }; // Window
 } // namespace 
 
