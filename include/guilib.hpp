@@ -1,15 +1,16 @@
 #pragma once
 
-#include <algorithm>
 #include <cstdlib>
 #include <print>
 #include <raylib.h>
 #include <string_view>
-#include <type_traits>
 
 namespace gui {
   // Window Class
   class Window {
+  private:
+    int monitor = GetCurrentMonitor();
+
   public:
     // Constructor
     Window(int width, int height, const std::string_view title) {
@@ -41,7 +42,7 @@ namespace gui {
     [[nodiscard]] Renderer startRender(Color background = RAYWHITE) const {
       return background;
     } // making Renderer's object into Window's member
-
+    
     // Window Toggling Methods
     void ToggleFullscreen() { ToggleFullscreen(); }
     void ToggleBorderless() { ToggleBorderlessWindowed(); }
@@ -55,9 +56,20 @@ namespace gui {
       SetWindowIcon(icon);
       UnloadImage(icon);
     }
+    void setPosition(int x, int y) { SetWindowPosition(x, y); }
+    void setSize(int x, int y) { SetWindowSize(x, y); }
 
-
+    // booleans
     bool isOpen() const { return !WindowShouldClose(); }
+
+    // Interger Type
+    int width() { return GetScreenWidth(); }
+    int height() { return GetScreenHeight(); }
+    int centerX() { return GetScreenWidth() / 2; }
+    int centerY() { return GetScreenHeight() / 2; }
+    int monitorWidth() { return GetMonitorWidth(monitor); }
+    int monitorHeight() { return GetMonitorWidth(monitor); }
+
     
   }; // Window
 
@@ -70,6 +82,8 @@ namespace gui {
   public:
     Button(float x, float y, float width, float height, const std::string_view text) 
       : bounds {x, y, width, height}, text(std::move(text)) {}
+
+    ~Button() {}
 
     // Methods
     // Returns true only on the exact frame the button is clicked
@@ -95,15 +109,9 @@ namespace gui {
       float text_x = bounds.x + (bounds.width - text_width) / 2.0f;
       float text_y = bounds.y + (bounds.height - font_size) / 2.0f;
 
-      DrawText(text.data(), int(text_x), int(text_y), font_size, BLACK);
+      DrawText(text.data(), static_cast<int>(text_x), static_cast<int>(text_y), font_size, BLACK);
     }
-  };
+  }; // Button
 
-  //   void draw() const {
-  //
-  //
-  //
-  //   }
-  // }; // Button
 } // namespace 
 
