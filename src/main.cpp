@@ -1,14 +1,19 @@
-#include <raylib.h>
+#include "guilib.hpp"
+#include <print>
+using namespace gui;
 
 int main() {
-    InitWindow(250, 250, "My Game");
+  Window game(400, 400, "Wrapper Tester");
 
-    while (!WindowShouldClose()) {
-        BeginDrawing();
-        ClearBackground(RAYWHITE);
-        EndDrawing();
-    }
+  Button btn1(200, 200, 150, 50, "BUTTON TEST");
 
-    CloseWindow();
-    return 0;
-}   
+  while (game.isOpen()) {
+    if (btn1.update()) std::println("CLICKEd");
+
+    auto frame = game.startRender(BLUE);
+
+    btn1.draw();
+  }
+
+  return 0;
+}
