@@ -1,11 +1,14 @@
-#include "guilib.hpp"
+#include <raylib.h>
 
 int main() {
-  gui::Window window(250, 250, "Title");
+    InitWindow(250, 250, "My Game");
 
-  while(window.isOpen()) {
-    auto frame = window.startRender();
-  }
+    while (!WindowShouldClose()) {
+        BeginDrawing();
+        ClearBackground(RAYWHITE);
+        EndDrawing();
+    }
 
-  return 0;
-}
+    CloseWindow();
+    return 0;
+}   

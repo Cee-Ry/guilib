@@ -40,13 +40,19 @@ namespace gui {
       return background;
     } // making Renderer's object into Window's member
 
-    // Methods
+    // Window Toggling Methods
     void ToggleFullscreen() { ToggleFullscreen(); }
-    void ToggleBorderlessWindowed() { ToggleBorderlessWindowed(); }
-    void MaximizeWindow() { MaximizeWindow(); }
-    void MinimizeWindow() { MinimizeWindow(); }
+    void ToggleBorderless() { ToggleBorderlessWindowed(); }
+    void Maximize() { MaximizeWindow(); }
+    void Minimize() { MinimizeWindow(); }
     void RestoreWindow() { RestoreWindow(); }
-    void SetWindowIcon(Image image) { SetWindowIcon(image); }
+
+    // Setter Methods
+    void setIcon(const std::string_view path) {
+      Image icon = LoadImage(path.data());
+      SetWindowIcon(icon);
+      UnloadImage(icon);
+    }
 
 
     bool isOpen() const { return !WindowShouldClose(); }
