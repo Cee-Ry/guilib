@@ -73,6 +73,7 @@ namespace gui {
     
   }; // Window
 
+  // Button Class
   class Button {
   private:
     Rectangle bounds;
@@ -112,6 +113,51 @@ namespace gui {
       DrawText(text.data(), static_cast<int>(text_x), static_cast<int>(text_y), font_size, BLACK);
     }
   }; // Button
+
+  // Texture || Texture2D Class
+  class Texture {
+  private:
+    Texture2D _texture {};
+
+  public:
+    explicit Texture(const char* path) {
+      _texture = LoadTexture(path);
+    }
+
+    // Move-only: prevent accidental double-free
+    Texture(const Texture&) = delete;
+    Texture& operator=(const Texture&) = delete;
+
+    ~Texture() { if (_texture.id) UnloadTexture(_texture); }
+
+    void display(int x, int y, Color tint) {
+      DrawTexture(_texture, x, y, tint);
+    }
+    void display(Vector2 position, Color tint) {
+      DrawTextureV(_texture, position, tint);
+    }
+    void display(Vector2 position, float rotation, float scale, Color tint) {
+      DrawTextureEx(_texture, position, rotation, scale, tint); 
+    }
+    void display(Rectangle rec, Vector2 position, Color tint) {
+      DrawTextureRec(_texture, rec, position, tint); 
+    }
+    void display(Rectangle srcrec, Rectangle dstrec, Vector2 origin, float rotation, Color tint) {
+      DrawTexturePro(_texture, srcrec, dstrec, origin, rotation, tint); 
+    }
+    void display(NPatchInfo nPatchInfo, Rectangle dstrec, Vector2 origin, float rotation, Color tint) {
+      DrawTextureNPatch(_texture, nPatchInfo, dstrec, origin, rotation, tint);
+    }
+  }; // Texture || Texture2D Class
+  using Texture2D = Texture;
+
+  struct Rectangle {
+    float x;                // Rectangle top-left corner position x
+    float y;                // Rectangle top-left corner position y
+    float width;            // Rectangle width
+    float height;           // Rectangle height
+  };
+
 
 } // namespace 
 

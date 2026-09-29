@@ -1,15 +1,16 @@
 #include "guilib.hpp"
-#include <print>
-using namespace gui;
+#include <raylib.h>
 
 int main() {
-  Window game(400, 400, "Wrapper Tester");
+  gui::Window game(800, 600, "Wrapper Tester");
+  gui::Texture test {"textures/redSniper.png"};
 
   while (game.isOpen()) {
-    Button btn1(float(game.centerX() - 100), float(game.centerY() - 35), 200, 70, "BUTTON TEST");
+    gui::Button btn1(float(game.centerX() - 75), float(game.centerY() - 25), 150.0, 50.0, "START");
     if (btn1.update()) std::println("CLICKEd");
 
     auto frame = game.startRender(BLUE);
+    test.display(0, 0, RAYWHITE);
 
     btn1.draw();
   }
