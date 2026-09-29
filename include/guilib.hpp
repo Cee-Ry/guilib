@@ -151,13 +151,6 @@ namespace gui {
   }; // Texture || Texture2D Class
   using Texture2D = Texture;
 
-  struct Rectangle {
-    float x;                // Rectangle top-left corner position x
-    float y;                // Rectangle top-left corner position y
-    float width;            // Rectangle width
-    float height;           // Rectangle height
-  };
-
 
 } // namespace 
 
