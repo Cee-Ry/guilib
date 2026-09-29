@@ -4,4 +4,6 @@ main
 
 # Ignored Directories
 build/
+textures/
+
 
